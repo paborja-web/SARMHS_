@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SARMHS CONFESSION</title>
+    <!-- Load Poppins Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Load Tailwind CSS for responsive utilities -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Universal Reset (Fixed universal selector) */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Sleek Red & Black Dark Mode Background */
+        body {
+            background: radial-gradient(circle at top center, #2a0808 0%, #110608 40%, #0a0a0c 100%);
+            min-height: 100vh;
+            color: #f4f4f5;
+            padding: 28px 16px 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* School Header Styling */
+        .header {
+            text-align: center;
+            color: #ffffff;
+            margin-bottom: 28px;
+            max-width: 620px;
+            width: 100%;
+        }
+
+        .school-badge {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(145deg, #18181b, #09090b);
+            border: 3px solid #ef4444;
+            border-radius: 50%;
+            margin: 0 auto 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 25px rgba(239, 68, 68, 0.45), inset 0 0 12px rgba(220, 38, 38, 0.3);
+            font-size: 36px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .school-badge:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 35px rgba(239, 68, 68, 0.65);
+        }
+
+        .school-name {
+            font-size: 12px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: #fca5a5;
+            font-weight: 600;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 800;
+            margin: 6px 0;
+            background: linear-gradient(to right, #ffffff, #f87171);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 4px 20px rgba(220, 38, 38, 0.35);
+            letter-spacing: 1.5px;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: #a1a1aa;
+            line-height: 1.5;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 620px;
+            width: 100%;
+        }
+
+        /* Confession Form Card */
+        .card {
+            background: #141417;
+            border-radius: 18px;
+            padding: 26px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(239, 68, 68, 0.2);
+            margin-bottom: 32px;
+            border-top: 4px solid #dc2626;
+            position: relative;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        input[type="text"], select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1.5px solid #27272a;
+            border-radius: 12px;
+            font-size: 14px;
+            background: #0a0a0c;
+            color: #f4f4f5;
+            outline: none;
+            transition: border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        input[type="text"]::placeholder,
+        textarea::placeholder {
+            color: #71717a;
+        }
+
+        select option {
+            background: #141417;
+            color: #f4f4f5;
+        }
+
+        input[type="text"]:focus, select:focus, textarea:focus {
+            border-color: #ef4444;
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.18);
+            background: #0d0d10;
+        }
+
+        /* Message Group */
+        .message-group {
+            margin-bottom: 18px;
+        }
+
+        .message-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #fca5a5;
+            margin-bottom: 8px;
+            letter-spacing: 0.3px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 135px;
+            padding: 14px 15px;
+            border: 1.5px solid #27272a;
+            border-radius: 12px;
+            font-size: 14px;
+            line-height: 1.6;
+            resize: vertical;
+            background: #0a0a0c;
+            color: #f4f4f5;
+            outline: none;
+            transition: border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .char-count {
+            text-align: right;
+            font-size: 12px;
+            color: #71717a;
+            margin-top: 6px;
+            font-weight: 500;
+        }
+
+        .char-count.near-limit {
+            color: #f87171;
+        }
+
+        /* Send Button */
+        .send-btn {
+            width: 100%;
+            padding: 14px 20px;
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            color: #ffffff;
+            border: 1px solid rgba(248, 113, 113, 0.3);
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            letter-spacing: 0.6px;
+            box-shadow: 0 6px 20px rgba(220, 38, 38, 0.4);
+            transition: transform 0.18s ease, box-shadow 0.2s ease, background 0.2s ease;
+        }
+
+        .send-btn:hover {
+            background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
+            box-shadow: 0 8px 25px rgba(239, 68, 68, 0.55);
+            transform: translateY(-2px);
+        }
+
+        .send-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Live Confessions Feed */
+        .wall-header {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-bottom: 18px;
+        }
+
+        .wall-title-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .wall-title {
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            letter-spacing: 0.4px;
+        }
+
+        .live-pulse {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #ef4444;
+            box-shadow: 0 0 10px #ef4444;
+            animation: pulseGlow 1.8s infinite ease-in-out;
+            flex-shrink: 0;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { transform: scale(1); opacity: 1; box-shadow: 0 0 10px #ef4444; }
+            50% { transform: scale(1.25); opacity: 0.7; box-shadow: 0 0 18px #f87171; }
+        }
+
+        .post-count-badge {
+            font-size: 12px;
+            font-weight: 600;
+            color: #fca5a5;
+            background: rgba(220, 38, 38, 0.16);
+            border: 1px solid rgba(239, 68, 68, 0.35);
+            padding: 4px 12px;
+            border-radius: 9999px;
+        }
+
+        /* Category Filter Pills */
+        .filter-bar {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 4px;
+            scrollbar-width: none;
+        }
+
+        .filter-bar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .filter-pill {
+            background: #141417;
+            color: #a1a1aa;
+            border: 1px solid #27272a;
+            border-radius: 9999px;
+            padding: 6px 14px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+        }
+
+        .filter-pill:hover {
+            border-color: rgba(239, 68, 68, 0.5);
+            color: #f4f4f5;
+        }
+
+        .filter-pill.active {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            color: #ffffff;
+            border-color: rgba(248, 113, 113, 0.45);
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.35);
+        }
+
+        .confession-item {
+            background: linear-gradient(180deg, #16161a 0%, #121215 100%);
+            border-radius: 18px;
+            padding: 22px;
+            margin-bottom: 18px;
+            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.6), 0 0 0 1px #27272a;
+            border-left: 4px solid #ef4444;
+            animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .confession-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 32px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(239, 68, 68, 0.38);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .confession-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+        }
+
+        .sender-info {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+        }
+
+        .avatar-badge {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #270909 0%, #18181b 100%);
+            border: 1.5px solid rgba(239, 68, 68, 0.55);
+            color: #fca5a5;
+            font-size: 13px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 12px rgba(239, 68, 68, 0.2);
+            flex-shrink: 0;
+            letter-spacing: 0.5px;
+        }
+
+        .sender-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .sender-name {
+            font-weight: 600;
+            font-size: 14px;
+            color: #f4f4f5;
+        }
+
+        .confession-time {
+            font-size: 11px;
+            color: #71717a;
+            font-weight: 500;
+        }
+
+        .tag {
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            background: rgba(220, 38, 38, 0.14);
+            color: #f87171;
+            border: 1px solid rgba(239, 68, 68, 0.35);
+            letter-spacing: 0.2px;
+        }
+
+        .confession-text {
+            font-size: 14.5px;
+            line-height: 1.7;
+            color: #e4e4e7;
+            white-space: pre-wrap;
+            word-break: break-word;
+            padding: 4px 0 14px;
+        }
+
+        /* Action / Reaction Bar */
+        .action-bar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-top: 12px;
+            border-top: 1px solid #222226;
+        }
+
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #1b1b20;
+            color: #a1a1aa;
+            border: 1px solid #2a2a30;
+            border-radius: 9999px;
+            padding: 6px 13px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .action-btn:hover {
+            background: #232329;
+            color: #f4f4f5;
+            border-color: rgba(239, 68, 68, 0.45);
+        }
+
+        .action-btn.liked {
+            background: rgba(220, 38, 38, 0.18);
+            color: #f87171;
+            border-color: rgba(239, 68, 68, 0.5);
+            box-shadow: 0 0 12px rgba(220, 38, 38, 0.2);
+        }
+
+        .action-btn.active-comments {
+            color: #fca5a5;
+            border-color: rgba(239, 68, 68, 0.4);
+        }
+
+        /* Nested Comments / Replies Section */
+        .comments-section {
+            margin-top: 14px;
+            padding-top: 14px;
+            border-top: 1px dashed #27272a;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .comments-section.collapsed {
+            display: none;
+        }
+
+        .comments-list {
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+        }
+
+        .comment-bubble {
+            background: #0c0c0f;
+            border: 1px solid #222227;
+            border-left: 2.5px solid #dc2626;
+            border-radius: 12px;
+            padding: 10px 13px;
+            animation: fadeIn 0.25s ease;
+        }
+
+        .comment-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+
+        .comment-author {
+            font-size: 12px;
+            font-weight: 600;
+            color: #fca5a5;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .comment-author-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #ef4444;
+        }
+
+        .comment-time {
+            font-size: 10.5px;
+            color: #71717a;
+        }
+
+        .comment-body {
+            font-size: 13px;
+            line-height: 1.5;
+            color: #d4d4d8;
+            word-break: break-word;
+            white-space: pre-wrap;
+        }
+
+        .no-comments-hint {
+            font-size: 12px;
+            color: #71717a;
+            font-style: italic;
+            padding: 2px 4px;
+        }
+
+        /* Inline Comment Form */
+        .comment-form {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            background: #0b0b0e;
+            border: 1px solid #27272a;
+            border-radius: 12px;
+            padding: 6px 8px;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .comment-form:focus-within {
+            border-color: #ef4444;
+            box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.15);
+        }
+
+        .comment-name-input {
+            width: 115px !important;
+            padding: 7px 10px !important;
+            font-size: 12px !important;
+            border-radius: 8px !important;
+            background: #141418 !important;
+            border: 1px solid #27272a !important;
+            flex-shrink: 0;
+        }
+
+        .comment-text-input {
+            flex: 1;
+            padding: 7px 10px !important;
+            font-size: 12.5px !important;
+            border-radius: 8px !important;
+            background: transparent !important;
+            border: none !important;
+            min-width: 0;
+        }
+
+        .comment-text-input:focus {
+            box-shadow: none !important;
+        }
+
+        .comment-submit-btn {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            color: #ffffff;
+            border: none;
+            border-radius: 9px;
+            padding: 7px 13px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            flex-shrink: 0;
+            transition: transform 0.15s ease, background 0.2s ease;
+        }
+
+        .comment-submit-btn:hover {
+            background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
+            transform: translateY(-1px);
+        }
+
+        .empty-feed-card {
+            background: #141417;
+            border: 1px dashed #2e2e34;
+            border-radius: 16px;
+            padding: 32px 20px;
+            text-align: center;
+            color: #71717a;
+            font-size: 13.5px;
+        }
+
+        .confession-item {
+            background: #141417;
+            border-radius: 16px;
+            padding: 20px 22px;
+            margin-bottom: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55), 0 0 0 1px #27272a;
+            border-left: 4px solid #ef4444;
+            animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .confession-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(239, 68, 68, 0.35);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .confession-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+
+        .sender-name {
+            font-weight: 600;
+            font-size: 14px;
+            color: #fca5a5;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .sender-name::before {
+            content: "";
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ef4444;
+            box-shadow: 0 0 8px #ef4444;
+        }
+
+        .tag {
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            background: rgba(220, 38, 38, 0.15);
+            color: #f87171;
+            border: 1px solid rgba(239, 68, 68, 0.35);
+            letter-spacing: 0.2px;
+        }
+
+        .confession-text {
+            font-size: 14px;
+            line-height: 1.65;
+            color: #e4e4e7;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .confession-time {
+            font-size: 11px;
+            color: #71717a;
+            margin-top: 12px;
+            text-align: right;
+            font-weight: 500;
+        }
+
+        /* Toast Feedback Banner */
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #141417;
+            color: #ffffff;
+            border: 1px solid #ef4444;
+            border-left: 4px solid #ef4444;
+            padding: 12px 18px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 500;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 15px rgba(239, 68, 68, 0.3);
+            opacity: 0;
+            transform: translateY(15px);
+            pointer-events: none;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            z-index: 50;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 480px) {
+            .form-row {
+                flex-direction: column;
+            }
+            h1 {
+                font-size: 25px;
+            }
+            .card {
+                padding: 20px;
+            }
+            .comment-form {
+                flex-wrap: wrap;
+            }
+            .comment-name-input {
+                width: 100% !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- School Header -->
+    <header class="header">
+        <div class="school-badge" title="SARMHS Official">🏫</div>
+        <div class="school-name">SARMHS Student Portal</div>
+        <h1>SARMHS CONFESSION</h1>
+        <p class="subtitle">Share your thoughts, shoutouts, or stories safely and anonymously.</p>
+    </header>
+
+    <main class="container">
+        <!-- Confession Submission Card -->
+        <div class="card">
+            <form id="confessionForm">
+                <div class="form-row">
+                    <input type="text" id="codename" placeholder="Codename (Optional - default: Anonymous)" maxlength="30">
+                    <select id="category" aria-label="Confession Category">
+                        <option value="📢 Shoutout">📢 Shoutout</option>
+                        <option value="❤️ Crush / Kilig">❤️ Crush / Kilig</option>
+                        <option value="📚 School Life">📚 School Life</option>
+                        <option value="💭 Vent / Off My Chest">💭 Vent / Off My Chest</option>
+                        <option value="🤝 Advice">🤝 Advice</option>
+                    </select>
+                </div>
+
+                <!-- Message Textarea -->
+                <div class="message-group">
+                    <label for="message">Your Message:</label>
+                    <textarea id="message" placeholder="Type your confession for SARMHS here..." maxlength="500" required></textarea>
+                    <div class="char-count" id="charCountWrapper"><span id="charCount">0</span> / 500</div>
+                </div>
+
+                <!-- Send Button -->
+                <button type="submit" class="send-btn">Send Confession 🚀</button>
+            </form>
+        </div>
+
+        <!-- Live Confessions Feed -->
+        <div class="wall-header">
+            <div class="wall-title-row">
+                <div class="wall-title">
+                    <span class="live-pulse" aria-hidden="true"></span>
+                    <span>Latest SARMHS Confessions</span>
+                </div>
+                <span class="post-count-badge" id="postCountBadge">0 Posts</span>
+            </div>
+
+            <!-- Category Filter Bar -->
+            <div class="filter-bar" id="filterBar" role="tablist" aria-label="Filter confessions by category">
+                <button type="button" class="filter-pill active" data-filter="ALL">All</button>
+                <button type="button" class="filter-pill" data-filter="📢 Shoutout">📢 Shoutout</button>
+                <button type="button" class="filter-pill" data-filter="❤️ Crush / Kilig">❤️ Crush / Kilig</button>
+                <button type="button" class="filter-pill" data-filter="📚 School Life">📚 School Life</button>
+                <button type="button" class="filter-pill" data-filter="💭 Vent / Off My Chest">💭 Vent</button>
+                <button type="button" class="filter-pill" data-filter="🤝 Advice">🤝 Advice</button>
+            </div>
+        </div>
+
+        <div id="confessionList"></div>
+    </main>
+
+    <!-- Non-intrusive status toast -->
+    <div id="toast" class="toast" role="status" aria-live="polite">Confession posted anonymously!</div>
+
+    <script>
+        const form = document.getElementById('confessionForm');
+        const messageInput = document.getElementById('message');
+        const charCount = document.getElementById('charCount');
+        const charCountWrapper = document.getElementById('charCountWrapper');
+        const confessionList = document.getElementById('confessionList');
+        const postCountBadge = document.getElementById('postCountBadge');
+        const filterBar = document.getElementById('filterBar');
+        const toast = document.getElementById('toast');
+
+        let activeFilter = 'ALL';
+        const openCommentSections = new Set();
+
+        // Default English sample posts with pre-populated comments
+        const defaultConfessions = [
+            {
+                id: 'seed-1',
+                codename: "Grade 10 - Emerald",
+                category: "❤️ Crush / Kilig",
+                message: "Shoutout to the person I always pass by at the school gate every morning—you instantly make my day better even when we have back-to-back quizzes!",
+                time: "Just now",
+                likes: 14,
+                liked: false,
+                comments: [
+                    {
+                        author: "Grade 10 - Diamond",
+                        text: "Drop a hint! What section or strand are they from? 👀",
+                        time: "2 mins ago"
+                    },
+                    {
+                        author: "Anonymous",
+                        text: "Morning motivation unlocked! Good luck on your quizzes today.",
+                        time: "Just now"
+                    }
+                ]
+            },
+            {
+                id: 'seed-2',
+                codename: "Anonymous SARMHS",
+                category: "📚 School Life",
+                message: "We've got this, fellow SARMHS students! Just a little more push and this quarter will be over. Good luck to everyone on upcoming exams!",
+                time: "1 hour ago",
+                likes: 23,
+                liked: true,
+                comments: [
+                    {
+                        author: "STEM Senior",
+                        text: "Claiming high scores for everyone! Don't forget to rest and hydrate.",
+                        time: "42 mins ago"
+                    }
+                ]
+            }
+        ];
+
+        // Retrieve saved confessions from localStorage and normalize structure
+        let confessions = [];
+        try {
+            const stored = localStorage.getItem('sarmhs_confessions_en');
+            const parsed = stored ? JSON.parse(stored) : defaultConfessions;
+            confessions = parsed.map((item, idx) => ({
+                id: item.id || `post-${Date.now()}-${idx}`,
+                codename: item.codename || "Anonymous",
+                category: item.category || "📢 Shoutout",
+                message: item.message || "",
+                time: item.time || "Recently",
+                likes: typeof item.likes === 'number' ? item.likes : 0,
+                liked: Boolean(item.liked),
+                comments: Array.isArray(item.comments) ? item.comments : []
+            }));
+        } catch (err) {
+            console.error("Failed to read from localStorage:", err);
+            confessions = defaultConfessions;
+        }
+
+        // Expand default posts' comment threads initially so users immediately see the sleek reply UI
+        confessions.forEach(post => {
+            if (post.comments && post.comments.length > 0) {
+                openCommentSections.add(post.id);
+            }
+        });
+
+        function saveConfessions() {
+            try {
+                localStorage.setItem('sarmhs_confessions_en', JSON.stringify(confessions));
+            } catch (err) {
+                console.error("Failed to save to localStorage:", err);
+            }
+        }
+
+        // Generate 1-2 character avatar initials from codename
+        function getInitials(name) {
+            const cleaned = String(name || 'AN').trim();
+            if (!cleaned) return 'AN';
+            const words = cleaned.split(/\s+/);
+            if (words.length >= 2) {
+                return (words[0][0] + words[1][0]).toUpperCase();
+            }
+            return cleaned.slice(0, 2).toUpperCase();
+        }
+
+        // Live character counter with subtle red warning near 500 limit
+        messageInput.addEventListener('input', () => {
+            const len = messageInput.value.length;
+            charCount.textContent = len;
+            if (len >= 450) {
+                charCountWrapper.classList.add('near-limit');
+            } else {
+                charCountWrapper.classList.remove('near-limit');
+            }
+        });
+
+        // Escape HTML characters to prevent XSS attacks
+        function escapeHTML(str) {
+            return String(str).replace(/[&<>'"]/g, tag => ({
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                "'": '&#39;',
+                '"': '&quot;'
+            }[tag]));
+        }
+
+        // Category Filter Pills Handler
+        filterBar.addEventListener('click', (e) => {
+            const pill = e.target.closest('.filter-pill');
+            if (!pill) return;
+
+            document.querySelectorAll('.filter-pill').forEach(btn => btn.classList.remove('active'));
+            pill.classList.add('active');
+            activeFilter = pill.dataset.filter;
+            renderConfessions();
+        });
+
+        // Render all confessions in the feed
+        function renderConfessions() {
+            confessionList.innerHTML = '';
+
+            const filtered = activeFilter === 'ALL'
+                ? confessions
+                : confessions.filter(item => item.category === activeFilter);
+
+            postCountBadge.textContent = `${filtered.length} ${filtered.length === 1 ? 'Post' : 'Posts'}`;
+
+            if (filtered.length === 0) {
+                confessionList.innerHTML = `
+                    <div class="empty-feed-card">
+                        No confessions in this category yet. Be the first to post one above!
+                    </div>
+                `;
+                return;
+            }
+
+            filtered.forEach(item => {
+                const isCommentsOpen = openCommentSections.has(item.id);
+                const commentsHTML = item.comments.length > 0
+                    ? item.comments.map(c => `
+                        <div class="comment-bubble">
+                            <div class="comment-top">
+                                <span class="comment-author">
+                                    <span class="comment-author-dot"></span>
+                                    ${escapeHTML(c.author || 'Anonymous')}
+                                </span>
+                                <span class="comment-time">${escapeHTML(c.time)}</span>
+                            </div>
+                            <div class="comment-body">${escapeHTML(c.text)}</div>
+                        </div>
+                    `).join('')
+                    : `<div class="no-comments-hint">No replies yet — start the conversation below.</div>`;
+
+                const div = document.createElement('div');
+                div.className = 'confession-item';
+                div.dataset.id = item.id;
+                div.innerHTML = `
+                    <div class="confession-header">
+                        <div class="sender-info">
+                            <div class="avatar-badge" aria-hidden="true">${escapeHTML(getInitials(item.codename))}</div>
+                            <div class="sender-meta">
+                                <span class="sender-name">${escapeHTML(item.codename)}</span>
+                                <span class="confession-time">${escapeHTML(item.time)}</span>
+                            </div>
+                        </div>
+                        <span class="tag">${escapeHTML(item.category)}</span>
+                    </div>
+
+                    <div class="confession-text">${escapeHTML(item.message)}</div>
+
+                    <div class="action-bar">
+                        <button type="button" class="action-btn like-btn ${item.liked ? 'liked' : ''}" data-id="${escapeHTML(item.id)}" aria-label="Like confession">
+                            <span>${item.liked ? '❤️' : '🤍'}</span>
+                            <span>${item.likes}</span>
+                        </button>
+                        <button type="button" class="action-btn toggle-comments-btn ${isCommentsOpen ? 'active-comments' : ''}" data-id="${escapeHTML(item.id)}" aria-label="Toggle comments">
+                            <span>💬</span>
+                            <span>${item.comments.length} ${item.comments.length === 1 ? 'Reply' : 'Replies'}</span>
+                        </button>
+                    </div>
+
+                    <div class="comments-section ${isCommentsOpen ? '' : 'collapsed'}" id="comments-${escapeHTML(item.id)}">
+                        <div class="comments-list">
+                            ${commentsHTML}
+                        </div>
+                        <form class="comment-form" data-id="${escapeHTML(item.id)}">
+                            <input type="text" class="comment-name-input" placeholder="Codename (opt.)" maxlength="24" aria-label="Commenter codename">
+                            <input type="text" class="comment-text-input" placeholder="Write a reply..." maxlength="250" required aria-label="Write a reply">
+                            <button type="submit" class="comment-submit-btn">Reply ↵</button>
+                        </form>
+                    </div>
+                `;
+                confessionList.appendChild(div);
+            });
+        }
+
+        // Delegate Like and Toggle Comment clicks inside confessionList
+        confessionList.addEventListener('click', (e) => {
+            const likeBtn = e.target.closest('.like-btn');
+            if (likeBtn) {
+                const postId = likeBtn.dataset.id;
+                const post = confessions.find(p => p.id === postId);
+                if (post) {
+                    post.liked = !post.liked;
+                    post.likes = Math.max(0, post.likes + (post.liked ? 1 : -1));
+                    saveConfessions();
+                    renderConfessions();
+                }
+                return;
+            }
+
+            const toggleBtn = e.target.closest('.toggle-comments-btn');
+            if (toggleBtn) {
+                const postId = toggleBtn.dataset.id;
+                if (openCommentSections.has(postId)) {
+                    openCommentSections.delete(postId);
+                } else {
+                    openCommentSections.add(postId);
+                }
+                renderConfessions();
+            }
+        });
+
+        // Delegate inline comment form submissions
+        confessionList.addEventListener('submit', (e) => {
+            const commentForm = e.target.closest('.comment-form');
+            if (!commentForm) return;
+            e.preventDefault();
+
+            const postId = commentForm.dataset.id;
+            const post = confessions.find(p => p.id === postId);
+            if (!post) return;
+
+            const nameInput = commentForm.querySelector('.comment-name-input');
+            const textInput = commentForm.querySelector('.comment-text-input');
+            const replyText = textInput.value.trim();
+            if (!replyText) return;
+
+            const now = new Date();
+            const replyTime = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+
+            post.comments.push({
+                author: nameInput.value.trim() || "Anonymous",
+                text: replyText,
+                time: replyTime
+            });
+
+            openCommentSections.add(postId);
+            saveConfessions();
+            renderConfessions();
+            showToast("Reply added! 💬");
+        });
+
+        // Show subtle confirmation toast
+        function showToast(msg) {
+            toast.textContent = msg;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Handle new confession submission
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const codenameInput = document.getElementById('codename').value.trim();
+            const categoryInput = document.getElementById('category').value;
+            const text = messageInput.value.trim();
+
+            if (!text) return;
+
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }) + ' • ' + now.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+
+            const newId = `post-${Date.now()}`;
+            const newPost = {
+                id: newId,
+                codename: codenameInput || "Anonymous",
+                category: categoryInput,
+                message: text,
+                time: timeString,
+                likes: 0,
+                liked: false,
+                comments: []
+            };
+
+            confessions.unshift(newPost);
+            openCommentSections.add(newId);
+            saveConfessions();
+
+            renderConfessions();
+            form.reset();
+            charCount.textContent = '0';
+            charCountWrapper.classList.remove('near-limit');
+            showToast("Confession posted to the SARMHS wall! 🚀");
+        });
+
+        // Initial render on page load
+        renderConfessions();
+    </script>
+
+</body>
+</html>
